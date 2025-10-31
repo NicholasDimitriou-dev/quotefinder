@@ -23,8 +23,8 @@
         function dqs(selector){
             return document.querySelector(selector)
         }
-        async function getAuthorInfo(authorId) {
-            //authorId = this.getAttribute("authorId");
+        async function getAuthorInfo() {
+            let authorId = this.getAttribute("authorId");
             let url = "api/authors/"+authorId;
             let response = await fetch(url);
             let data = await response.json();
