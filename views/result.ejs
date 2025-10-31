@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+</head>
+<body class="text-center">
+    <h1 class="bg-primary text-white p-4">Famous Quotes</h1>
+    <!-- <form action="/searchByKeyword">
+        <label>Keyword: <input type="text" name="keyword"></label> 
+        <button class="btn btn-outline-success">Success</button>
+    </form> -->
+    <% for(let i of quotes) { %>
+        "<%= i.quote %>"<br>
+        <a class="authors" href="#" authorId="<%= i.authorId %>"><%= i.authorId %> <%= i.firstName %> , <%= i.lastName %></a>
+        <br><br>
+    <% } %>
+    <div id="authorId">
+        <h2 id="authorName"></h2>
+        <img id="authorImg" width="300px" height="300px">
+    </div>
+    <script>
+        dqs(".authors"),addEventListener("click", getAuthorInfo)
+        function dqs(selector){
+            return document.querySelector(selector)
+        }
+        async function getAuthorInfo(authorId) {
+            //authorId = this.getAttribute("authorId");
+            let url = "api/authors/"+authorId;
+            let response = await fetch(url);
+            let data = await response.json();
+            console.log(data);
+            dqs("#authorName").textContent = data[0].firstName + data[0].lastName;
+            dqs("#authorImg").textContent = data[0].portrait;
+        }
+    </script>
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>
