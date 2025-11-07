@@ -37,7 +37,7 @@ app.get('/api/authors/:authorId', async(req, res) => {
     let sql = `SELECT *
                FROM authors
                WHERE authorId = ?`
-    let param = await pool.query(sql, authorId);
+    let [param] = await pool.query(sql, authorId);
    res.send(param)
 });
 app.get("/searchByKeyword", async(req,res)=>{
