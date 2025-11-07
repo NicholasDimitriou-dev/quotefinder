@@ -9,30 +9,21 @@
         <label>Keyword: <input type="text" name="keyword"></label> 
         <button class="btn btn-outline-success">Success</button>
     </form> -->
+    <a href="/"><Button>Back</Button></a>
+    <br>
     <% for(let i of quotes) { %>
         "<%= i.quote %>"<br>
-        <a class="authors" href="#" authorId="<%= i.authorId %>"><%= i.authorId %> <%= i.firstName %> , <%= i.lastName %></a>
+        <a class="authors" href="#" authorId="<%= i.authorId %>"><%= i.firstName %> , <%= i.lastName %></a>
         <br><br>
     <% } %>
-    <div id="authorId">
-        <h2 id="authorName"></h2>
-        <img id="authorImg" width="300px" height="300px">
-    </div>
-    <script>
-        dqs(".authors"),addEventListener("click", getAuthorInfo)
-        function dqs(selector){
-            return document.querySelector(selector)
-        }
-        async function getAuthorInfo() {
-            let authorId = this.getAttribute("authorId");
-            let url = "api/authors/"+authorId;
-            let response = await fetch(url);
-            let data = await response.json();
-            console.log(data);
-            dqs("#authorName").textContent = data[0].firstName + data[0].lastName;
-            dqs("#authorImg").textContent = data[0].portrait;
-        }
-    </script>
+    <dialog id="authorModal">
+        <div id="authorId">
+            <h2 id="authorName"></h2>
+            <img id="authorImg">
+        </div>
+        <button id="closeModal"> Close </button>
+    </dialog>
+    <script src="/js/results.js"></script>
     <%- include("partials/footer.ejs") %>
 </body>
 </html>

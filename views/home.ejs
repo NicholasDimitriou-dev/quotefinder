@@ -5,10 +5,11 @@
 </head>
 <body class="text-center" class="">
     <h1 class="bg-primary text-white p-4">Famous Quotes</h1>
-    <form action="/searchByKeyword">
-        <label>Keyword: <input type="text" name="keyword"></label> 
+    <form id="searchByKeywordForm" action="/searchByKeyword">
+        <label>Keyword: <input type="text" name="keyword" id="keyword"></label> 
         <button class="btn btn-outline-success">Search</button>
     </form>
+    <h3 id="errorCode"></h1>
     <form action="/searchByAuthor">
         <label>Author: 
             <select name="authorId">
@@ -20,7 +21,7 @@
         <button class="btn btn-outline-success">Search</button>
     </form>
     <form action="/searchByCategory">
-        <label>Author: 
+        <label>Category: 
             <select name="category">
                 <% for (row of cate) { %>
                     <option value="<%=row.category%>"><%=row.category%></option>
@@ -36,5 +37,6 @@
         <button class="btn btn-outline-success">Search</button>
     </form>
     <%- include("partials/footer.ejs") %>
+    <script src="/js/home.js"></script>
 </body>
 </html>
